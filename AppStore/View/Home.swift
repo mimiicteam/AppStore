@@ -43,6 +43,7 @@ struct Home: View {
                     } label: {
                         CardView(item: item)
                     }
+                    .buttonStyle(ScaleButtonStyle())
                 }
             }
             .padding(.vertical)
@@ -133,5 +134,14 @@ struct Home_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
             .preferredColorScheme(.dark)
+    }
+}
+
+//MARK: - ScaleButton Style
+struct ScaleButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? 0.95 : 1)
+            .animation(.easeInOut, value: configuration.isPressed)
     }
 }
