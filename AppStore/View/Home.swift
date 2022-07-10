@@ -11,6 +11,12 @@ struct Home: View {
     //MARK: - Animation Properties
     @State var currentItem: Today?
     @State var showDetailPage: Bool = false
+    
+    //MARK: - Matched Geomatry Effect
+    @Namespace var animation
+    
+    //MARK: - Detail Animation Property
+    @State var animationView: Bool = false
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
@@ -62,6 +68,7 @@ struct Home: View {
         .overlay {
             if let currentItem = currentItem, showDetailPage {
                 DetailView(item: currentItem)
+                    .ignoresSafeArea(.container, edges: .top)
             }
         }
     }
@@ -143,6 +150,7 @@ struct Home: View {
             RoundedRectangle(cornerRadius: 15, style: .continuous)
                 .fill(.gray.opacity(0.2))
         }
+        .matchedGeometryEffect(id: item.id, in: animation)
     }
     
     //MARK: - Detail View
@@ -150,6 +158,13 @@ struct Home: View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
                 CardView(item: item)
+                    .scaleEffect(animationView ? 1 : 0.95)
+            }
+        }
+        .transition(.identity)
+        .onAppear {
+            withAnimation(.interactiveSpring(response: 0.6, dampingFraction: 0.7, blendDuration: 0.7)){
+                animationView = true
             }
         }
     }
@@ -168,5 +183,19 @@ struct ScaleButtonStyle: ButtonStyle {
         configuration.label
             .scaleEffect(configuration.isPressed ? 0.95 : 1)
             .animation(.easeInOut, value: configuration.isPressed)
+    }
+}
+
+//MARK: - Safe Area Value
+extension View {
+    func safeArea() -> UIEdgeInsets {
+        guard let screen = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
+            return .zero
+        }
+        
+        guard let safeArea = screen.windows.first?.safeAreaInsets else {
+            return .zero
+        }
+        return safeArea
     }
 }
