@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct Home: View {
+    //MARK: - Animation Properties
+    @State var currentItem: Today?
+    @State var showDetailPage: Bool = false
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
-            VStack(spacing : 30) {
+            VStack {
                 HStack(alignment: .bottom, spacing: 30) {
                     VStack(alignment: .leading, spacing: 8) {
                         Text("SUNDAY, JULY 3")
@@ -36,17 +39,30 @@ struct Home: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
+                .padding(.bottom)
                 
                 ForEach(todayItem) { item in
                     Button {
+                        withAnimation(.interactiveSpring(response: 0.6, dampingFraction: 0.7, blendDuration: 0.7)) {
+                            currentItem = item
+                            showDetailPage = true
+                        }
                         
                     } label: {
                         CardView(item: item)
+                        // For Matched Geometry Effect We Didn't applied Padding
+                        // Instead Applying Scaling
+                            .scaleEffect(currentItem?.id == item.id && showDetailPage ? 1: 0.95)
                     }
                     .buttonStyle(ScaleButtonStyle())
                 }
             }
             .padding(.vertical)
+        }
+        .overlay {
+            if let currentItem = currentItem, showDetailPage {
+                DetailView(item: currentItem)
+            }
         }
     }
     
@@ -118,7 +134,7 @@ struct Home: View {
                             Capsule()
                                 .fill(.ultraThinMaterial)
                         }
-                        
+                    
                 }
             }
             .padding([.horizontal, .bottom])
@@ -126,6 +142,15 @@ struct Home: View {
         .background {
             RoundedRectangle(cornerRadius: 15, style: .continuous)
                 .fill(.gray.opacity(0.2))
+        }
+    }
+    
+    //MARK: - Detail View
+    func DetailView(item: Today) -> some View {
+        ScrollView(.vertical, showsIndicators: false) {
+            VStack {
+                CardView(item: item)
+            }
         }
     }
 }
