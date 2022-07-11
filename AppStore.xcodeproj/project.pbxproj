@@ -14,6 +14,9 @@
 		7CA426DC287167650093340B /* AppStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA426DB287167650093340B /* AppStoreTests.swift */; };
 		7CA426E6287167650093340B /* AppStoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA426E5287167650093340B /* AppStoreUITests.swift */; };
 		7CA426E8287167650093340B /* AppStoreUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA426E7287167650093340B /* AppStoreUITestsLaunchTests.swift */; };
+		7CA426F8287169710093340B /* Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA426F7287169710093340B /* Today.swift */; };
+		7CA426FA28716ECB0093340B /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA426F928716ECB0093340B /* Home.swift */; };
+		7CA426FC287174020093340B /* CustomCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA426FB287174020093340B /* CustomCorner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,9 @@
 		7CA426E1287167650093340B /* AppStoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppStoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CA426E5287167650093340B /* AppStoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreUITests.swift; sourceTree = "<group>"; };
 		7CA426E7287167650093340B /* AppStoreUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7CA426F7287169710093340B /* Today.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Today.swift; sourceTree = "<group>"; };
+		7CA426F928716ECB0093340B /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		7CA426FB287174020093340B /* CustomCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCorner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +100,9 @@
 		7CA426C9287167630093340B /* AppStore */ = {
 			isa = PBXGroup;
 			children = (
+				7CA426F6287169250093340B /* ViewModel */,
+				7CA426F5287169200093340B /* Model */,
+				7CA426F42871691D0093340B /* View */,
 				7CA426CA287167630093340B /* AppStoreApp.swift */,
 				7CA426CC287167630093340B /* ContentView.swift */,
 				7CA426CE287167650093340B /* Assets.xcassets */,
@@ -125,6 +134,30 @@
 				7CA426E7287167650093340B /* AppStoreUITestsLaunchTests.swift */,
 			);
 			path = AppStoreUITests;
+			sourceTree = "<group>";
+		};
+		7CA426F42871691D0093340B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7CA426F928716ECB0093340B /* Home.swift */,
+				7CA426FB287174020093340B /* CustomCorner.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7CA426F5287169200093340B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7CA426F7287169710093340B /* Today.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7CA426F6287169250093340B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +291,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CA426CD287167630093340B /* ContentView.swift in Sources */,
+				7CA426FC287174020093340B /* CustomCorner.swift in Sources */,
+				7CA426F8287169710093340B /* Today.swift in Sources */,
+				7CA426FA28716ECB0093340B /* Home.swift in Sources */,
 				7CA426CB287167630093340B /* AppStoreApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

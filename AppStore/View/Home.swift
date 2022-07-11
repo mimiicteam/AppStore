@@ -43,6 +43,7 @@ struct Home: View {
                             .clipShape(Circle())
                     }
                 }
+                .opacity(showDetailPage ? 0 : 1)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
                 .padding(.bottom)
@@ -169,6 +170,36 @@ struct Home: View {
             VStack {
                 CardView(item: item)
                     .scaleEffect(animateView ? 1 : 0.95)
+                
+                VStack(spacing: 15) {
+                    Text(item.dummyText)
+                        .foregroundColor(.gray)
+                        .font(.title3)
+                        .multilineTextAlignment(.leading)
+                        .lineSpacing(10)
+                        .padding(.bottom, 20)
+                    
+                    Divider()
+                    
+                    Button {
+                        
+                    } label: {
+                        Label {
+                            Text("Share Story")
+                        } icon: {
+                            Image(systemName: "square.and.arrow.up")
+                        }
+                        .padding(.horizontal, 30)
+                        .padding(.vertical, 12)
+                        .foregroundColor(.white)
+                        .background(RoundedRectangle(cornerRadius: 7, style: .continuous)
+                            .fill(.gray.opacity(0.1))
+                        )
+                    }
+                }
+                .padding()
+                
+                
             }
         }
         .overlay(alignment: .topTrailing, content: {
@@ -189,6 +220,7 @@ struct Home: View {
             }
             .padding()
             .padding(.top, safeArea().top)
+            .opacity(animateView ? 1 : 0)
         })
         .onAppear {
             withAnimation(.interactiveSpring(response: 0.6, dampingFraction: 0.7, blendDuration: 0.7)){
